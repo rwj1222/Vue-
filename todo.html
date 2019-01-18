@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            position:relative;
+            padding-top:5%;
+        }
+        .finished{
+            color:gray;
+        text-decoration: line-through;}
+        button{
+            outline:none;
+            border-radius: 10px;
+            background-color:orange;
+        }
+        .remove,.clear{
+            background-color: lightgray;
+        }
+        .remove{
+            position:absolute;
+            right:30%;
+        }
+
+        input[type="checkbox"]{
+            display:inline-block;
+            position: absolute;
+            right: 60%;
+        }
+        .inputArea{
+            outline:none;
+            background-color: azure;
+            height:20px;
+            border-radius: 5px;
+        }
+        #app{
+            width:30%;
+            margin:0 auto;
+
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="app" >
+    <h1>A Meaningful Day</h1>
+    <ul>
+        <input class="inputArea" v-model="ipt" v-on:keyup.enter="addItem">
+        <button class="add" v-on:click="addItem">add</button>
+        <button class="clear" v-on:click="clear">clear</button>
+        <li v-for="(item,index) in list" v-bind:class="{finished:item.finished}">
+            {{item.todo}}
+            <input type="checkbox" v-on:click="checkFinished(item)">
+            <button class="remove" v-on:click="removeItem(index)">remove</button>
+        </li>
+
+    </ul>
+
+</div>
+
+
+<script src="vue.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
